@@ -29,5 +29,13 @@ class AdminController extends Controller
         return view('createques');
     }
 
+    public function showques(){
+        return view('showques');
+    }
+
+    public function result(){
+        return view('result');
+    }
+
 
 }

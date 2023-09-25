@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DatabaseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,10 +19,13 @@ use App\Http\Controllers\AdminController;
 //     return view('welcome');
 // });
 Route::get('/', [RegisterController::class,'index']);
+Route::post('/ustore', [DatabaseController::class,'store'])->name('ustore.user');
 // Route::get('/home', [AdminController::class, 'navbar']);
 Route::get('/course', [AdminController::class, 'course']);
 Route::get('/addquiz', [AdminController::class, 'addquiz']);
-Route::get('/user', [AdminController::class, 'user']);
+Route::get('/user', [DatabaseController::class, 'view']);
 Route::get('/removequiz', [AdminController::class, 'removequiz']);
 Route::post('/createques', [AdminController::class, 'createques'])->name('createques.ques');
+Route::get('/showques', [AdminController::class, 'showques']);
+Route::get('/result', [AdminController::class, 'result']);
 

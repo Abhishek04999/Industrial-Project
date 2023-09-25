@@ -15,23 +15,35 @@
     <table class="table table-bordered" style="width: 70vw; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); background-color:rgb(224, 216, 224);  margin-left: 10vw; margin-top: 8rem; text-shadow: 200px;">
         <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">UserName</th>
+              <th scope="col">Rank</th>
+              <th scope="col">Name</th>
               <th scope="col">Gender</th>
-              <th scope="col">E-mail</th>
+              <th scope="col">Score</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($users2 as $user)
             <tr>
-              <th scope="row">{{$user->user_id}}</th>
-              <td>{{$user->username}}</td>
-              <td>{{$user->gender}}</td>
-              <td>{{$user->email}}</td>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Male</td>
+              <td>8</td>
               <td><button class="btn btn-danger">Delete</button></td>
             </tr>
-            @endforeach
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Female</td>
+              <td>7</td>
+              <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry the Bird</td>
+              <td>Male</td>
+              <td>6</td>
+              <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
           </tbody>
       </table>
     </div>

@@ -77,6 +77,7 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" class="btn btn-success">Save</button>
             </div>
+        </form>
           </div>
         </div>
       </div>
@@ -101,12 +102,13 @@
                     <label for="recipient-name" class="col-form-label">Notes</label>
                     <input type="file" class="form-control" id="recipient-name">
                   </div>
-              </form>
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" class="btn btn-success">Save</button>
             </div>
+        </form>
           </div>
         </div>
       </div>
