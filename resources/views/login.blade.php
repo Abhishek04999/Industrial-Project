@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>E-learning</title>
 	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 
@@ -91,7 +91,7 @@ button:hover{
 	transform: translateY(-530px);
 }
 #chk:checked ~ .login label{
-	transform: scale(1);	
+	transform: scale(1);
 }
 #chk:checked ~ .signup label{
 	transform: scale(.6);
@@ -113,7 +113,7 @@ button:hover{
      <h2 style="margin-top: -12%; margin-left: 0;color:rgb(141, 179, 45);"><span>“Online learning is not the next big thing,<br>&nbsp; it is the now big thing”</span></h2>
      </div>
 
-	<div class="main">  	
+	<div class="main">
 		<input type="checkbox" id="chk" aria-hidden="true">
 
 			<div class="signup">

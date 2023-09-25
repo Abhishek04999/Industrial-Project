@@ -23,4 +23,5 @@ Route::get('/course', [AdminController::class, 'course']);
 Route::get('/addquiz', [AdminController::class, 'addquiz']);
 Route::get('/user', [AdminController::class, 'user']);
 Route::get('/removequiz', [AdminController::class, 'removequiz']);
+Route::post('/createques', [AdminController::class, 'createques'])->name('createques.ques');
 

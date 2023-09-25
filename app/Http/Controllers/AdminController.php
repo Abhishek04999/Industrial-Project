@@ -25,5 +25,9 @@ class AdminController extends Controller
         return view('removequiz');
     }
 
+    public function createques(){
+        return view('createques');
+    }
+
 
 }
