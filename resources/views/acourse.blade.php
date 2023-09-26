@@ -16,6 +16,7 @@
  <div class="card-body" >
     <table class="table table-bordered" style="width: 75vw; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); background-color:rgb(224, 216, 224);  margin-left: 10vw; margin-top: 1vw; text-shadow: 200px;">
         <thead>
+
             <tr style="text-align: center;">
               <th scope="col">#</th>
               <th scope="col">Name</th>
@@ -25,28 +26,18 @@
             </tr>
           </thead>
           <tbody>
+            @foreach ($courseview as $view)
             <tr>
-              <th scope="row">1</th>
-              <td>C++ L1</td>
-              <td>www.youtube.com/c++</td>
-              <td>C++</td>
-              <td style="width: 18rem;"><button class="btn btn-danger">Delete</button>&nbsp;<button class="btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Edit</button>
+              <th scope="row">{{$view->course_id}}</th>
+              <td>{{$view->Cname}}</td>
+              <td>{{$view->Curl}}</td>
+              <td>{{$view->Cfilename}}</td>
+              <td style="width: 18rem;">
+                <a href="{{route('course.delete',['id'=>$view->course_id])}}">
+                <button class="btn btn-danger">Delete</button></a>&nbsp;<button class="btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Edit</button>
             </td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>PHP L1</td>
-              <td>www.youtube.com/php</td>
-              <td>PHP</td>
-              <td style="width: 18rem;"><button class="btn btn-danger">Delete</button>&nbsp;<button class="btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Edit</button>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Java L1</td>
-              <td>www.youtube.com/java</td>
-              <td>Java</td>
-              <td style="width: 18rem;"><button class="btn btn-danger">Delete</button>&nbsp;<button class="btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Edit</button>
-            </tr>
+            @endforeach
           </tbody>
       </table>
     </div>
@@ -58,24 +49,24 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form method="POST" enctype="multipart/form-data" action="{{url('/addcourse')}}">
+                @csrf
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Course Name</label>
-                  <input type="text" class="form-control" id="recipient-name">
+                  <input type="text" name="Cname" class="form-control" id="recipient-name">
                 </div>
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Video Url</label>
-                    <input type="text" class="form-control" id="recipient-name">
+                    <input type="text" name="Curl" class="form-control" id="recipient-name">
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Notes</label>
-                    <input type="file" class="form-control" id="recipient-name">
+                    <input type="file" name="Cfilename" class="form-control" id="recipient-name">
                   </div>
-              </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success">Save</button>
+              <button type="submit" class="btn btn-success">Save</button>
             </div>
         </form>
           </div>
@@ -102,7 +93,6 @@
                     <label for="recipient-name" class="col-form-label">Notes</label>
                     <input type="file" class="form-control" id="recipient-name">
                   </div>
-
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

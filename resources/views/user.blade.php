@@ -29,7 +29,11 @@
               <td>{{$user->username}}</td>
               <td>{{$user->gender}}</td>
               <td>{{$user->email}}</td>
-              <td><button class="btn btn-danger">Delete</button></td>
+              <td>
+                <a href="{{route('customer.delete',['id'=>$user->user_id])}}">
+                <button class="btn btn-danger">Delete</button>
+            </a>
+            </td>
             </tr>
             @endforeach
           </tbody>

@@ -15,17 +15,40 @@ use App\Http\Controllers\DatabaseController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+//===================================================
 Route::get('/', [RegisterController::class,'index']);
-Route::post('/ustore', [DatabaseController::class,'store'])->name('ustore.user');
+
+
+//======================================================
+
+
+
+
+//=========================Admin Controller Route ======================================
 // Route::get('/home', [AdminController::class, 'navbar']);
-Route::get('/course', [AdminController::class, 'course']);
+// Route::get('/course', [AdminController::class, 'course']);
 Route::get('/addquiz', [AdminController::class, 'addquiz']);
-Route::get('/user', [DatabaseController::class, 'view']);
 Route::get('/removequiz', [AdminController::class, 'removequiz']);
 Route::post('/createques', [AdminController::class, 'createques'])->name('createques.ques');
 Route::get('/showques', [AdminController::class, 'showques']);
 Route::get('/result', [AdminController::class, 'result']);
+
+//============================================================
+
+
+
+
+
+
+//======================Database Controller Route ===================================
+Route::post('/ustore', [DatabaseController::class,'store'])->name('ustore.user');
+Route::get('/user/delete/{id}',[DatabaseController::class, 'delete'])->name('customer.delete');
+Route::get('/user', [DatabaseController::class, 'view']);
+Route::post('/addcourse', [DatabaseController::class,'addcourse'])->name('addcourse.adcrse');
+Route::get('/course', [DatabaseController::class, 'courseview']);
+Route::get('/course/delete/{id}', [DatabaseController::class, 'coursedelete' ])->name('course.delete');
+
+
+//============================================================================
+
 
