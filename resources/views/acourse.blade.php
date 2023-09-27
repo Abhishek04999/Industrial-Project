@@ -34,7 +34,41 @@
               <td>{{$view->Cfilename}}</td>
               <td style="width: 18rem;">
                 <a href="{{route('course.delete',['id'=>$view->course_id])}}">
-                <button class="btn btn-danger">Delete</button></a>&nbsp;<button class="btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Edit</button>
+                <button class="btn btn-danger">Delete</button></a>&nbsp;
+                <button class="btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#modal{{$view->course_id}}" data-bs-whatever="@mdo">Edit</button>
+
+                <div class="modal fade" id="modal{{$view->course_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Update Course</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form method="POST" enctype="multipart/form-data" action="{{route('course.edit',['id'=>$view->course_id])}}">
+                            @csrf
+                            <div class="mb-3">
+                              <label for="recipient-name" class="col-form-label">Course Name</label>
+                              <input type="text" name="Cname" class="form-control"  value="{{$view->Cname}}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Video Url</label>
+                                <input type="text" name="Curl" class="form-control"  value="{{$view->Curl}}">
+                              </div>
+                              <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Notes</label>
+                                <input type="file" name="Cfilename" class="form-control"  value="{{$view->Cfilename}}">
+                              </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                      </div>
+                    </div>
+                  </div>
+
             </td>
             </tr>
             @endforeach
@@ -72,34 +106,5 @@
           </div>
         </div>
       </div>
-      <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Update Course</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Course Name</label>
-                  <input type="text" class="form-control" id="recipient-name">
-                </div>
-                <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">Video Url</label>
-                    <input type="text" class="form-control" id="recipient-name">
-                  </div>
-                  <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">Notes</label>
-                    <input type="file" class="form-control" id="recipient-name">
-                  </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success">Save</button>
-            </div>
-        </form>
-          </div>
-        </div>
-      </div>
+
 @endsection

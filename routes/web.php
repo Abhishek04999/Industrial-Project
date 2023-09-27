@@ -47,6 +47,7 @@ Route::get('/user', [DatabaseController::class, 'view']);
 Route::post('/addcourse', [DatabaseController::class,'addcourse'])->name('addcourse.adcrse');
 Route::get('/course', [DatabaseController::class, 'courseview']);
 Route::get('/course/delete/{id}', [DatabaseController::class, 'coursedelete' ])->name('course.delete');
+Route::post('/course/edit/{id}', [DatabaseController::class, 'courseedit' ])->name('course.edit');
 
 
 //============================================================================

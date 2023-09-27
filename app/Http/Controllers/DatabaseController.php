@@ -88,4 +88,23 @@ class DatabaseController extends Controller
        return redirect('course');
     }
 
+
+    public function courseedit(Request $req, $id){
+
+        $courseedit = Courses::find($id);
+
+        $courseedit->Cname = $req['Cname'];
+          $courseedit->Curl = $req['Curl'];
+
+          unlink(public_path('/storage/uploads/'.$courseedit->Cfilename));
+
+        $filename = time() . "-notes." . $req->file('Cfilename')->getClientOriginalExtension();
+        $req->file('Cfilename')->storeAs('public/uploads', $filename);
+        $courseedit->Cfilename =$filename;
+          $courseedit->save();
+          return redirect()->back();
+
+
+    }
+
 }

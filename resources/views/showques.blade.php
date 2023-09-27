@@ -46,7 +46,7 @@
               <td>20</td>
               <td>20</td>
               <td>15 min</td>
-              <td><button class="btn btn-danger">Remove</button></td>
+              <td><button class="btn btn-danger">Restart</button></td>
             </tr>
           </tbody>
       </table>
