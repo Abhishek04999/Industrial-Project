@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Users;
 use App\Models\Courses;
+use App\Models\Quiz;
 
 
 function getID($length)
@@ -106,5 +107,41 @@ class DatabaseController extends Controller
 
 
     }
+
+    //==============================================================================
+
+    //======================Quiz Database ==========================================
+
+     public function addquiz(Request $req)
+     {
+            $addquiz = new Quiz;
+            $addquiz->qtitle = $req['qtitle'];
+            $addquiz->questotlnumber = $req['questotlnumber'];
+            $addquiz->rightmarksans = $req['rightmarksans'];
+            $addquiz->wrongmarkans = $req['wrongmarkans'];
+            $addquiz->timelimit = $req['timelimit'];
+            $addquiz->save();
+
+
+        $x=$req['questotlnumber'];
+
+
+            $data = compact('x');
+            return view('createques')->with($data);
+
+     }
+
+     public function viewquiz()
+     {
+        $viewquiz = Quiz::all();
+        $data = compact('viewquiz');
+        return view('removequiz')->with($data);
+
+
+     }
+
+
+
+    //===============================================================================
 
 }

@@ -28,8 +28,8 @@ Route::get('/', [RegisterController::class,'index']);
 // Route::get('/home', [AdminController::class, 'navbar']);
 // Route::get('/course', [AdminController::class, 'course']);
 Route::get('/addquiz', [AdminController::class, 'addquiz']);
-Route::get('/removequiz', [AdminController::class, 'removequiz']);
-Route::post('/createques', [AdminController::class, 'createques'])->name('createques.ques');
+
+
 Route::get('/showques', [AdminController::class, 'showques']);
 Route::get('/result', [AdminController::class, 'result']);
 
@@ -48,7 +48,8 @@ Route::post('/addcourse', [DatabaseController::class,'addcourse'])->name('addcou
 Route::get('/course', [DatabaseController::class, 'courseview']);
 Route::get('/course/delete/{id}', [DatabaseController::class, 'coursedelete' ])->name('course.delete');
 Route::post('/course/edit/{id}', [DatabaseController::class, 'courseedit' ])->name('course.edit');
-
+Route::post('/createques', [DatabaseController::class, 'addquiz'])->name('createques.ques');
+Route::get('/removequiz', [DatabaseController::class, 'viewquiz']);
 
 //============================================================================
 

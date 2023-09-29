@@ -13,6 +13,9 @@
 <body>
     <b><br /><!-- Text input-->
         <div class="container">
+
+
+
             @for ($i = 1; $i <= 4; $i++)
             <form class="form-horizontal"  >
                 @csrf
