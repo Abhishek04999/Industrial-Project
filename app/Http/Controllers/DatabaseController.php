@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Users;
 use App\Models\Courses;
 use App\Models\Quiz;
+use App\Models\QuizQuestion;
 
 
 function getID($length)
@@ -142,6 +143,35 @@ class DatabaseController extends Controller
 
 
 
+     public function saveQuiz(Request $request)
+{
+    // Loop through the form data and save each quiz question
+    for ($i = 1; $i <= $request->x; $i++) {
+        $quizQuestion = new QuizQuestion();
+        $quizQuestion->question = $request->input("qns$i");
+        $quizQuestion->option_a = $request->input("${i}a");
+        $quizQuestion->option_b = $request->input("${i}b");
+        $quizQuestion->option_c = $request->input("${i}c");
+        $quizQuestion->option_d = $request->input("${i}d");
+        $quizQuestion->correct_answer = $request->input("ans$i");
+        $quizQuestion->save();
+    }
+
+    // Redirect back to the form or any other page
+    return view('addquiz');
+
+}
+    public function delquiz($id)
+    {
+           $delquiz = Quiz::find($id);
+           if(!is_null($delquiz)){
+            $delquiz->delete();
+           }
+       return redirect('removequiz');
+    }
+
+
     //===============================================================================
+
 
 }

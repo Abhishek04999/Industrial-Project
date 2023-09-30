@@ -50,6 +50,8 @@ Route::get('/course/delete/{id}', [DatabaseController::class, 'coursedelete' ])-
 Route::post('/course/edit/{id}', [DatabaseController::class, 'courseedit' ])->name('course.edit');
 Route::post('/createques', [DatabaseController::class, 'addquiz'])->name('createques.ques');
 Route::get('/removequiz', [DatabaseController::class, 'viewquiz']);
+Route::get('/removequiz/delete/{id}', [DatabaseController::class , 'delquiz'])->name('removequiz.delete');
+Route::post('/quizquestion',[DatabaseController::class, 'saveQuiz'])->name('save-quiz');
 
 //============================================================================
 

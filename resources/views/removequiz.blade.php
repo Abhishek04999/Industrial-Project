@@ -31,7 +31,11 @@
               <td>{{$quiz->questotlnumber}}</td>
               <td>{{$quiz->rightmarksans}}</td>
               <td>{{$quiz->timelimit}} min</td>
-              <td><button class="btn btn-danger">Delete</button></td>
+              <td>
+                <a href="{{route('removequiz.delete',['id'=>$quiz->quizid])}}">
+                <button class="btn btn-danger">Delete</button></a>&nbsp;
+                <button class="btn btn-dark">View</button>
+            </td>
             </tr>
             @endforeach
           </tbody>

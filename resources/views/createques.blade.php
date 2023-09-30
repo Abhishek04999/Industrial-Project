@@ -16,8 +16,8 @@
 
 
 
-            @for ($i = 1; $i <= 4; $i++)
-            <form class="form-horizontal"  >
+            @for ($i = 1; $i <= $x; $i++)
+            <form method='POST' action="{{ route('save-quiz') }}" class="form-horizontal">
                 @csrf
                 <fieldset>
 
@@ -30,6 +30,8 @@
                         <textarea rows="3" cols="5" name="qns{{ $i }}" class="form-control" placeholder="Write question number {{ $i }} here..."></textarea>
                     </div>
                 </div>
+
+                <input type="text" name="x" class="d-none" value="{{$x}}" id="">
 
                 <!-- Text inputs for options a, b, c, and d -->
                 @foreach (['a', 'b', 'c', 'd'] as $option)
@@ -55,10 +57,10 @@
 
                 </fieldset>
 
-                @if ($i < 4)
+                @if ($i < $x)
                 <hr> <!-- Add a horizontal line to separate the forms -->
                 @endif
-            </form>
+
             @endfor
 
             <!-- Submit button outside the loop -->
