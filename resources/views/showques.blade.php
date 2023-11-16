@@ -24,30 +24,19 @@
             </tr>
           </thead>
           <tbody>
+            @foreach ($showques as $quiz )
             <tr>
-              <th scope="row">1</th>
-              <td>C++</td>
-              <td>10</td>
-              <td>10</td>
-              <td>5 min</td>
-              <td><button class="btn btn-success">Start</button></td>
+              <th scope="row">{{$quiz->quizid}}</th>
+              <td>{{$quiz->qtitle}}</td>
+              <td>{{$quiz->questotlnumber}}</td>
+              <td>{{$quiz->rightmarksans}}</td>
+              <td>{{$quiz->timelimit}} min</td>
+              <td>
+                <a href="{{route('view-question')}}">
+                    <button class="btn btn-success">Start</button></a>&nbsp;
+              <button class="btn btn-danger">Restart</button></td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>PHP</td>
-              <td>15</td>
-              <td>15</td>
-              <td>10 min</td>
-              <td><button class="btn btn-success">Start</button></td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Java</td>
-              <td>20</td>
-              <td>20</td>
-              <td>15 min</td>
-              <td><button class="btn btn-danger">Restart</button></td>
-            </tr>
+            @endforeach
           </tbody>
       </table>
     </div>

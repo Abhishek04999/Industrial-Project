@@ -139,6 +139,7 @@ class DatabaseController extends Controller
         return view('removequiz')->with($data);
 
 
+
      }
 
 
@@ -170,6 +171,22 @@ class DatabaseController extends Controller
        return redirect('removequiz');
     }
 
+
+    public function showquestion()
+    {
+        $showquestions = QuizQuestion::all();
+        $data = compact('showquestions');
+        return view('questionview')->with($data);
+    }
+
+
+    public function showques()
+    {
+        $showques = Quiz::all();
+        $data = compact('showques');
+        return view('showques')->with($data);
+
+    }
 
     //===============================================================================
 
