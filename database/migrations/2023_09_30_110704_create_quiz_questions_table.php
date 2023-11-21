@@ -21,6 +21,8 @@ return new class extends Migration
         $table->string('option_c');
         $table->string('option_d');
         $table->string('correct_answer');
+        $table->unsignedBigInteger('quizid');
+        $table->foreign('quizid')->references('quizid')->on('quizzes');
         $table->timestamps();
         });
     }

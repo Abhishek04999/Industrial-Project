@@ -147,6 +147,10 @@ class DatabaseController extends Controller
      public function saveQuiz(Request $request)
 {
     // Loop through the form data and save each quiz question
+    $quizid = Quiz::pluck('quizid');
+    echo '<pre>';
+    print_r($quizid);
+
     for ($i = 1; $i <= $request->x; $i++) {
         $quizQuestion = new QuizQuestion();
         $quizQuestion->question = $request->input("qns$i");
@@ -155,8 +159,10 @@ class DatabaseController extends Controller
         $quizQuestion->option_c = $request->input("${i}c");
         $quizQuestion->option_d = $request->input("${i}d");
         $quizQuestion->correct_answer = $request->input("ans$i");
+         $quizQuestion->quizid = $quizid;
         $quizQuestion->save();
     }
+
 
     // Redirect back to the form or any other page
     return view('addquiz');
