@@ -35,7 +35,7 @@
               <td>{{$quiz->rightmarksans}}</td>
               <td>{{$quiz->timelimit}} min</td>
               <td>
-                <a href="{{route('view-question')}}">
+                <a href="{{env('APP_URL')}}/viewquestion/{{$quiz->quizid}}">
                     <button class="btn btn-success">Start</button></a>&nbsp;
               <button class="btn btn-danger">Restart</button></td>
             </tr>

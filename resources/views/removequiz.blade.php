@@ -16,6 +16,8 @@
 </head>
 <body>
  <div class="card-body">
+
+
     <table class="table table-bordered" style="width: 70vw; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); background-color:rgb(224, 216, 224);  margin-left: 10vw; margin-top: 8rem; text-shadow: 200px;">
         <thead>
             <tr>

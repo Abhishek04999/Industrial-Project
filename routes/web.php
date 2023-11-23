@@ -52,7 +52,7 @@ Route::post('/createques', [DatabaseController::class, 'addquiz'])->name('create
 Route::get('/removequiz', [DatabaseController::class, 'viewquiz']);
 Route::get('/removequiz/delete/{id}', [DatabaseController::class , 'delquiz'])->name('removequiz.delete');
 Route::post('/quizquestion',[DatabaseController::class, 'saveQuiz'])->name('save-quiz');
-Route::get('/viewquestion',[DatabaseController::class, 'showquestion'])->name('view-question');
+Route::get('/viewquestion/{id}',[DatabaseController::class, 'showquestion'])->name('view-question');
 Route::get('/showques', [DatabaseController::class, 'showques']);
 
 //============================================================================

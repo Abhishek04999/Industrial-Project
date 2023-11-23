@@ -65,6 +65,7 @@
 
             @endfor
 
+            <input type="text" class="" name="id" value="{{$quizid}}">
             <!-- Submit button outside the loop -->
             <div class="form-group">
                 <label class="col-md-12 control-label" for=""></label>

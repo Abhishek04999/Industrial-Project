@@ -115,6 +115,7 @@ class DatabaseController extends Controller
 
      public function addquiz(Request $req)
      {
+
             $addquiz = new Quiz;
             $addquiz->qtitle = $req['qtitle'];
             $addquiz->questotlnumber = $req['questotlnumber'];
@@ -128,7 +129,7 @@ class DatabaseController extends Controller
 
 
             $data = compact('x');
-            return view('createques')->with($data);
+            return view('createques')->with('quizid', $addquiz->quizid)->with($data);
 
      }
 
@@ -147,10 +148,7 @@ class DatabaseController extends Controller
      public function saveQuiz(Request $request)
 {
     // Loop through the form data and save each quiz question
-    $quizid = Quiz::pluck('quizid');
-    echo '<pre>';
-    print_r($quizid);
-
+    $quizId = $request->input('id');
     for ($i = 1; $i <= $request->x; $i++) {
         $quizQuestion = new QuizQuestion();
         $quizQuestion->question = $request->input("qns$i");
@@ -159,7 +157,7 @@ class DatabaseController extends Controller
         $quizQuestion->option_c = $request->input("${i}c");
         $quizQuestion->option_d = $request->input("${i}d");
         $quizQuestion->correct_answer = $request->input("ans$i");
-         $quizQuestion->quizid = $quizid;
+        $quizQuestion->quizid = $quizId;
         $quizQuestion->save();
     }
 
@@ -178,9 +176,9 @@ class DatabaseController extends Controller
     }
 
 
-    public function showquestion()
+    public function showquestion($id)
     {
-        $showquestions = QuizQuestion::all();
+        $showquestions = QuizQuestion::where('quizid',$id)->get();
         $data = compact('showquestions');
         return view('questionview')->with($data);
     }
