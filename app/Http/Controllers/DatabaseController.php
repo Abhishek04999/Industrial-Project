@@ -52,6 +52,8 @@ class DatabaseController extends Controller
        return redirect('user');
     }
 
+
+
     //============================================
 
     //===============Course database==============

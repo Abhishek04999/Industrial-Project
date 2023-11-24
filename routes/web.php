@@ -58,3 +58,6 @@ Route::get('/showques', [DatabaseController::class, 'showques']);
 //============================================================================
 
 
+Route::get('/adminlogin', function(){
+    return view ('adminlogin');
+});
