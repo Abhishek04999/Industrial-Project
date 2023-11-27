@@ -38,10 +38,12 @@
                 </ul>
               </li>
             </ul>
-            <form class="d-flex">
               <!-- x -->
+              <a href="{{route('admin.logout')}}">
               <button class="btn btn-outline-danger" type="submit">Logout</button>
-            </form>
+            </a>
+
+
           </div>
         </div>
       </nav>

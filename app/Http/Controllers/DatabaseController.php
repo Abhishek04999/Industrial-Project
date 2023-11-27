@@ -7,6 +7,7 @@ use App\Models\Users;
 use App\Models\Courses;
 use App\Models\Quiz;
 use App\Models\QuizQuestion;
+use App\Models\adminloginout;
 
 
 function getID($length)
@@ -52,6 +53,34 @@ class DatabaseController extends Controller
        return redirect('user');
     }
 
+
+    public function adminlogin(){
+
+        return view('adminlogin');
+
+    }
+
+    public function adminl(Request $request){
+
+        $ad = adminloginout::where('email',$request->email)->first()->toArray();
+
+        if($ad['email']==$request->email && $ad['password']==$request->password){
+        session()->put('admin_id',$request->email);
+        return redirect('/course');
+    }
+    else{
+        return redirect()->back();
+    }
+
+    }
+
+    public function adminlogout(){
+
+
+
+        session()->remove('admin_id');
+        return redirect('/adminlogin');
+    }
 
 
     //============================================

@@ -41,23 +41,25 @@ Route::get('/result', [AdminController::class, 'result']);
 
 
 //======================Database Controller Route ===================================
-Route::post('/ustore', [DatabaseController::class,'store'])->name('ustore.user');
-Route::get('/user/delete/{id}',[DatabaseController::class, 'delete'])->name('customer.delete');
-Route::get('/user', [DatabaseController::class, 'view']);
-Route::post('/addcourse', [DatabaseController::class,'addcourse'])->name('addcourse.adcrse');
-Route::get('/course', [DatabaseController::class, 'courseview']);
-Route::get('/course/delete/{id}', [DatabaseController::class, 'coursedelete' ])->name('course.delete');
-Route::post('/course/edit/{id}', [DatabaseController::class, 'courseedit' ])->name('course.edit');
-Route::post('/createques', [DatabaseController::class, 'addquiz'])->name('createques.ques');
-Route::get('/removequiz', [DatabaseController::class, 'viewquiz']);
-Route::get('/removequiz/delete/{id}', [DatabaseController::class , 'delquiz'])->name('removequiz.delete');
-Route::post('/quizquestion',[DatabaseController::class, 'saveQuiz'])->name('save-quiz');
-Route::get('/viewquestion/{id}',[DatabaseController::class, 'showquestion'])->name('view-question');
-Route::get('/showques', [DatabaseController::class, 'showques']);
+Route::post('/ustore', [DatabaseController::class,'store'])->name('ustore.user')->middleware('admin');
+Route::get('/user/delete/{id}',[DatabaseController::class, 'delete'])->name('customer.delete')->middleware('admin');
+Route::get('/user', [DatabaseController::class, 'view'])->middleware('admin');
+Route::post('/addcourse', [DatabaseController::class,'addcourse'])->name('addcourse.adcrse')->middleware('admin');
+Route::get('/course', [DatabaseController::class, 'courseview'])->middleware('admin');
+Route::get('/course/delete/{id}', [DatabaseController::class, 'coursedelete' ])->name('course.delete')->middleware('admin');
+Route::post('/course/edit/{id}', [DatabaseController::class, 'courseedit' ])->name('course.edit')->middleware('admin');
+Route::post('/createques', [DatabaseController::class, 'addquiz'])->name('createques.ques')->middleware('admin');
+Route::get('/removequiz', [DatabaseController::class, 'viewquiz'])->middleware('admin');
+Route::get('/removequiz/delete/{id}', [DatabaseController::class , 'delquiz'])->name('removequiz.delete')->middleware('admin');
+Route::post('/quizquestion',[DatabaseController::class, 'saveQuiz'])->name('save-quiz')->middleware('admin');
+Route::get('/viewquestion/{id}',[DatabaseController::class, 'showquestion'])->name('view-question')->middleware('admin');
+Route::get('/showques', [DatabaseController::class, 'showques'])->middleware('admin');
+Route::get('/adminlogin',[DatabaseController::class,'adminlogin']);
+Route::post('/adminl',[DatabaseController::class,'adminl']);
+Route::get('/adminlogout',[DatabaseController::class,'adminlogout'])->name('admin.logout');
+
 
 //============================================================================
 
 
-Route::get('/adminlogin', function(){
-    return view ('adminlogin');
-});
+

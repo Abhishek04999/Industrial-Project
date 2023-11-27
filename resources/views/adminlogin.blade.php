@@ -119,7 +119,7 @@ button:hover{
 		<input type="checkbox" id="chk" aria-hidden="true">
 
 			<div class="signup">
-				<form method="POST" action="{{route('ustore.user')}}">
+				<form method="POST" action="{{url('/adminl')}}">
                     @csrf
 					<label for="chk" aria-hidden="true">Login</label>
 					<input type="email" name="email" placeholder="Email" required="">
