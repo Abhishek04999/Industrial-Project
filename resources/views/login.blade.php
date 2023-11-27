@@ -131,10 +131,11 @@ button:hover{
 			</div>
 
 			<div class="login">
-				<form>
+				<form method="POST" action="{{url('/userl')}}">
+                    @csrf
 					<label for="chk" aria-hidden="true">Login</label>
 					<input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
+					<input type="password" name="password" placeholder="Password" required="">
 					<button>Login</button>
 				</form>
 			</div>

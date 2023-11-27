@@ -36,6 +36,10 @@ class AdminController extends Controller
     public function result(){
         return view('result');
     }
+    public function urank(){
+        return view('urank');
+    }
+
 
 
 }

@@ -33,6 +33,7 @@ class DatabaseController extends Controller
           $users1->gender = $request['gender'];
           $users1->password = md5($request['password']);
           $users1->save();
+          return redirect()->back();
     }
 
     public function view(){
@@ -53,6 +54,7 @@ class DatabaseController extends Controller
        return redirect('user');
     }
 
+    ///=============================Admin Login==========
 
     public function adminlogin(){
 
@@ -83,24 +85,82 @@ class DatabaseController extends Controller
     }
 
 
+    ///====================User Login==============================
+    public function userlogin(){
+
+        return view('login');
+
+    }
+
+    public function userl(Request $request){
+
+        $ad = Users::where('email',$request->email)->first()->toArray();
+
+        if($ad['email']==$request->email && $ad['password']==$request->password){
+        session()->put('user_id',$request->email);
+        return redirect('/uhome');
+    }
+    else{
+        return redirect()->back();
+    }
+
+    }
+
+    public function userlogout(){
+
+
+
+        session()->remove('user_id');
+        return redirect('/userlogin');
+    }
+
     //============================================
 
     //===============Course database==============
 
 
     public function addcourse(Request $req)
-    {
-        $addcourse = new Courses;
-          $addcourse->Cname = $req['Cname'];
-          $addcourse->Curl = $req['Curl'];
+{
+    $addcourse = new Courses;
+    $addcourse->Cname = $req['Cname'];
+    // $addcourse->Curl = $req['Curl'];
 
+    // Extract YouTube video ID from the URL
+    $videoId = $this->getVideoId($req['Curl']);
+
+    if ($videoId !== "error") {
+        $addcourse->Curl = $videoId; // Assuming you have a 'CvideoId' column in your Courses table
+
+        // Upload the file
         $filename = time() . "-notes." . $req->file('Cfilename')->getClientOriginalExtension();
         $req->file('Cfilename')->storeAs('public/uploads', $filename);
-        $addcourse->Cfilename =$filename;
-          $addcourse->save();
-          return redirect()->back();
+        $addcourse->Cfilename = $filename;
 
+        $addcourse->save();
+
+        return redirect()->back()->with('success', 'Course added successfully.');
+    } else {
+        return redirect()->back()->with('error', 'Invalid YouTube URL.');
     }
+}
+
+// Function to extract YouTube video ID
+private function getVideoId($url)
+{
+    $videoUrl = parse_url($url);
+
+    if ($videoUrl['host'] === "youtu.be") {
+        return ltrim($videoUrl['path'], '/');
+    } elseif (
+        ($videoUrl['host'] === "www.youtube.com" || $videoUrl['host'] === "youtube.com") &&
+        isset($videoUrl['query'])
+    ) {
+        parse_str($videoUrl['query'], $queryParams);
+        return isset($queryParams['v']) ? $queryParams['v'] : "error";
+    } else {
+        return "error";
+    }
+}
 
     public function courseview(){
 
@@ -108,6 +168,15 @@ class DatabaseController extends Controller
         $courseview = Courses::all();
         $data = compact('courseview');
         return view('acourse')->with($data);
+
+    }
+
+    public function ucourseview(){
+
+
+        $ucourseview = Courses::all();
+        $data = compact('ucourseview');
+        return view('ucourse')->with($data);
 
     }
 
@@ -122,22 +191,51 @@ class DatabaseController extends Controller
     }
 
 
-    public function courseedit(Request $req, $id){
-
+    public function courseedit(Request $req, $id)
+    {
         $courseedit = Courses::find($id);
 
         $courseedit->Cname = $req['Cname'];
-          $courseedit->Curl = $req['Curl'];
+        // $courseedit->Curl = $req['Curl'];
 
-          unlink(public_path('/storage/uploads/'.$courseedit->Cfilename));
+        // Extract YouTube video ID from the URL
+        $videoId = $this->getVideo($req['Curl']);
 
-        $filename = time() . "-notes." . $req->file('Cfilename')->getClientOriginalExtension();
-        $req->file('Cfilename')->storeAs('public/uploads', $filename);
-        $courseedit->Cfilename =$filename;
-          $courseedit->save();
-          return redirect()->back();
+        if ($videoId !== "error") {
+            $courseedit->Curl = $videoId; // Assuming you have a 'CvideoId' column in your Courses table
 
+            // Delete the old file
+            unlink(storage_path("app/public/uploads/{$courseedit->Cfilename}"));
 
+            // Upload the new file
+            $filename = time() . "-notes." . $req->file('Cfilename')->getClientOriginalExtension();
+            $req->file('Cfilename')->storeAs('public/uploads', $filename);
+            $courseedit->Cfilename = $filename;
+
+            $courseedit->save();
+
+            return redirect()->back()->with('success', 'Course updated successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Invalid YouTube URL.');
+        }
+    }
+
+    // Function to extract YouTube video ID
+    private function getVideo($url)
+    {
+        $videoUrl = parse_url($url);
+
+        if ($videoUrl['host'] === "youtu.be") {
+            return ltrim($videoUrl['path'], '/');
+        } elseif (
+            ($videoUrl['host'] === "www.youtube.com" || $videoUrl['host'] === "youtube.com") &&
+            isset($videoUrl['query'])
+        ) {
+            parse_str($videoUrl['query'], $queryParams);
+            return isset($queryParams['v']) ? $queryParams['v'] : "error";
+        } else {
+            return "error";
+        }
     }
 
     //==============================================================================
@@ -220,6 +318,14 @@ class DatabaseController extends Controller
         $showques = Quiz::all();
         $data = compact('showques');
         return view('showques')->with($data);
+
+    }
+
+    public function quizstart()
+    {
+        $showques = Quiz::all();
+        $data = compact('showques');
+        return view('uhome')->with($data);
 
     }
 

@@ -1,6 +1,6 @@
-@extends('layouts.main')
+@extends('layouts1.main')
 
-@section('main-section')
+@section('Main-section')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +12,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
 </head>
 <body>
-    <div>
+    {{-- <div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="margin-left: 76vw ; margin-top: 10vw;">Add Course</button>
-    </div>
+    </div> --}}
  <div class="card-body" >
     <table class="table table-bordered" style="width: 75vw; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); background-color:rgb(224, 216, 224);  margin-left: 10vw; margin-top: 1vw; text-shadow: 200px;">
         <thead>
@@ -24,17 +24,20 @@
               <th scope="col">Name</th>
               <th scope="col">Url</th>
               <th scope="col">Notes</th>
-              <th scope="col">Action</th>
+              {{-- <th scope="col">Action</th> --}}
             </tr>
           </thead>
           <tbody>
-            @foreach ($courseview as $view)
+            @foreach ($ucourseview as $view)
             <tr>
               <th scope="row">{{$view->course_id}}</th>
               <td>{{$view->Cname}}</td>
-              <td>{{$view->Curl}}</td>
-              <td>{{$view->Cfilename}}</td>
-              <td style="width: 18rem;">
+              <td><iframe width="415" height="215" src="https://www.youtube.com/embed/{{$view->Curl}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
+              <td>
+                <embed src="{{asset('storage/uploads/')}}/{{$view->Cfilename}}" type="application/pdf" width="600" height="400">
+            </td>
+
+              {{-- <td style="width: 18rem;">
                 <a href="{{route('course.delete',['id'=>$view->course_id])}}">
                 <button class="btn btn-danger">Delete</button></a>&nbsp;
                 <button class="btn btn-success" type="button"  data-bs-toggle="modal" data-bs-target="#modal{{$view->course_id}}" data-bs-whatever="@mdo">Edit</button>
@@ -55,7 +58,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Video Url</label>
-                                <input type="text" name="Curl" class="form-control"  value="https://youtu.be/{{$view->Curl}}">
+                                <input type="text" name="Curl" class="form-control"  value="{{$view->Curl}}">
                               </div>
                               <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Notes</label>
@@ -71,13 +74,13 @@
                     </div>
                   </div>
 
-            </td>
+            </td> --}}
             </tr>
             @endforeach
           </tbody>
       </table>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
@@ -107,6 +110,6 @@
         </form>
           </div>
         </div>
-      </div>
+      </div> --}}
 
 @endsection
