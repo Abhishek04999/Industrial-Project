@@ -31,7 +31,7 @@ class DatabaseController extends Controller
           $users1->username = $request['name'];
           $users1->email = $request['email'];
           $users1->gender = $request['gender'];
-          $users1->password = md5($request['password']);
+          $users1->password = $request['password'];
           $users1->save();
           return redirect()->back();
     }
@@ -41,7 +41,7 @@ class DatabaseController extends Controller
 
         $users2 = Users::all();
         $data = compact('users2');
-        return view('user')->with($data);
+        return view('admin.user')->with($data);
 
     }
 
@@ -58,7 +58,7 @@ class DatabaseController extends Controller
 
     public function adminlogin(){
 
-        return view('adminlogin');
+        return view('admin.adminlogin');
 
     }
 
@@ -88,7 +88,7 @@ class DatabaseController extends Controller
     ///====================User Login==============================
     public function userlogin(){
 
-        return view('login');
+        return view('user.login');
 
     }
 
@@ -167,18 +167,19 @@ private function getVideoId($url)
 
         $courseview = Courses::all();
         $data = compact('courseview');
-        return view('acourse')->with($data);
+        return view('admin.acourse')->with($data);
 
     }
 
-    public function ucourseview(){
+    public function ucoursesview(){
 
 
-        $ucourseview = Courses::all();
-        $data = compact('ucourseview');
-        return view('ucourse')->with($data);
+        $ucoursesview = Courses::all();
+        $data = compact('ucoursesview');
+        return view('user.ucourse')->with($data);
 
     }
+
 
     public function coursedelete($id)
     {
@@ -258,7 +259,7 @@ private function getVideoId($url)
 
 
             $data = compact('x');
-            return view('createques')->with('quizid', $addquiz->quizid)->with($data);
+            return view('admin.createques')->with('quizid', $addquiz->quizid)->with($data);
 
      }
 
@@ -266,7 +267,7 @@ private function getVideoId($url)
      {
         $viewquiz = Quiz::all();
         $data = compact('viewquiz');
-        return view('removequiz')->with($data);
+        return view('admin.removequiz')->with($data);
 
 
 
@@ -292,7 +293,7 @@ private function getVideoId($url)
 
 
     // Redirect back to the form or any other page
-    return view('addquiz');
+    return view('admin.addquiz');
 
 }
     public function delquiz($id)
@@ -309,7 +310,7 @@ private function getVideoId($url)
     {
         $showquestions = QuizQuestion::where('quizid',$id)->get();
         $data = compact('showquestions');
-        return view('questionview')->with($data);
+        return view('admin.questionview')->with($data);
     }
 
 
@@ -317,7 +318,7 @@ private function getVideoId($url)
     {
         $showques = Quiz::all();
         $data = compact('showques');
-        return view('showques')->with($data);
+        return view('admin.showques')->with($data);
 
     }
 
@@ -325,11 +326,28 @@ private function getVideoId($url)
     {
         $showques = Quiz::all();
         $data = compact('showques');
-        return view('uhome')->with($data);
+        return view('user.uquizes')->with($data);
+
+    }
+    public function uhome(){
+        return view('user.uhome');
 
     }
 
     //===============================================================================
+
+   public function ucours(){
+    return view('user.ucours');
+   }
+
+   public function ucourssview(Request $request){
+
+    $ucourssview = Courses::where('Cname',base64_decode($request->input('q')))->get();
+    $data = compact('ucourssview');
+    return view('user.ucours')->with($data);
+
+}
+
 
 
 }

@@ -27,12 +27,10 @@ use App\Http\Controllers\DatabaseController;
 //=========================Admin Controller Route ======================================
 // Route::get('/home', [AdminController::class, 'navbar']);
 // Route::get('/course', [AdminController::class, 'course']);
-// Route::get('/addquiz', [AdminController::class, 'addquiz']);
-
-
-Route::get('/showques', [AdminController::class, 'showques']);
-Route::get('/result', [AdminController::class, 'result']);
-Route::get('/urank', [AdminController::class, 'urank']);
+Route::get('/addquiz', [AdminController::class, 'addquiz'])->middleware('user');
+Route::get('/showques', [AdminController::class, 'showques'])->middleware('user');
+Route::get('/result', [AdminController::class, 'result'])->middleware('user');
+Route::get('/urank', [AdminController::class, 'urank'])->middleware('user');
 
 //============================================================
 
@@ -41,9 +39,9 @@ Route::get('/urank', [AdminController::class, 'urank']);
 
 
 
-//======================Database Controller Route ===================================
-Route::post('/ustore', [DatabaseController::class,'store'])->name('ustore.user');
+//======================Database admin Controller Route ===================================
 
+Route::post('/ustore', [DatabaseController::class,'store'])->name('ustore.user');
 Route::get('/user/delete/{id}',[DatabaseController::class, 'delete'])->name('customer.delete')->middleware('admin');
 Route::get('/user', [DatabaseController::class, 'view'])->middleware('admin');
 Route::post('/addcourse', [DatabaseController::class,'addcourse'])->name('addcourse.adcrse')->middleware('admin');
@@ -57,18 +55,27 @@ Route::post('/quizquestion',[DatabaseController::class, 'saveQuiz'])->name('save
 Route::get('/viewquestion/{id}',[DatabaseController::class, 'showquestion'])->name('view-question')->middleware('admin');
 Route::get('/showques', [DatabaseController::class, 'showques'])->middleware('admin');
 
+
 //=======================Admin Login  Details=======================
+
 Route::get('/adminlogin',[DatabaseController::class,'adminlogin']);
 Route::post('/adminl',[DatabaseController::class,'adminl']);
 Route::get('/adminlogout',[DatabaseController::class,'adminlogout'])->name('admin.logout');
 
+
 //====================User Loginn Details==============================
+
 Route::get('/userlogin',[DatabaseController::class,'userlogin']);
 Route::post('/userl',[DatabaseController::class,'userl']);
 Route::get('/userlogout',[DatabaseController::class,'userlogout'])->name('user.logout');
 Route::post('/ustore', [DatabaseController::class,'store'])->name('ustore.user');
-//============================================================================
 
-Route::get('/ucourse', [DatabaseController::class, 'ucourseview'])->middleware('user');
-Route::get('/uhome', [DatabaseController::class, 'quizstart'])->middleware('user');
+
+
+//================================Database user Controller Route ============================================
+
+Route::get('/ucourse', [DatabaseController::class, 'ucoursesview'])->middleware('user');
+Route::get('/uhome', [DatabaseController::class, 'uhome'])->middleware('user');
+Route::get('/uquizes', [DatabaseController::class, 'quizstart'])->middleware('user');
+Route::get('/ucours', [DatabaseController::class, 'ucourssview'])->middleware('user');
 

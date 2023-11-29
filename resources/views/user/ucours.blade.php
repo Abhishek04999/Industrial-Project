@@ -15,26 +15,26 @@
     {{-- <div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="margin-left: 76vw ; margin-top: 10vw;">Add Course</button>
     </div> --}}
+    <h1 style="text-align: center">C language</h1>
  <div class="card-body" >
     <table class="table table-bordered" style="width: 75vw; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); background-color:rgb(224, 216, 224);  margin-left: 10vw; margin-top: 1vw; text-shadow: 200px;">
         <thead>
 
             <tr style="text-align: center;">
               <th scope="col">#</th>
-              <th scope="col">Name</th>
               <th scope="col">Url</th>
               <th scope="col">Notes</th>
               {{-- <th scope="col">Action</th> --}}
             </tr>
           </thead>
           <tbody>
-            @foreach ($ucourseview as $view)
+            @foreach ($ucourssview as $view)
             <tr>
               <th scope="row">{{$view->course_id}}</th>
-              <td>{{$view->Cname}}</td>
+              {{-- <td style="text-align:center; padding-top:6em">{{$view->Cname}}</td> --}}
               <td><iframe width="415" height="215" src="https://www.youtube.com/embed/{{$view->Curl}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
               <td>
-                <embed src="{{asset('storage/uploads/')}}/{{$view->Cfilename}}" type="application/pdf" width="600" height="400">
+                <embed src="{{asset('storage/uploads/')}}/{{$view->Cfilename}}" width="415" height="215" type="application/pdf" width="600" height="400">
             </td>
 
               {{-- <td style="width: 18rem;">
