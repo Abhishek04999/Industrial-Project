@@ -1,23 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+
+@extends('layouts.main') {{-- Assuming you have a layout file --}}
+
+@section('main-section')
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @push('title')
     <title>Simple Quiz</title>
     @endpush
-
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             text-align: center;
-            margin: 20px;
+
         }
 
         #quiz-container {
             max-width: 600px;
-            margin: 0 auto;
+
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -63,6 +62,7 @@
     </style>
 </head>
 <body>
+    <div class="home-content">
     <div id="quiz-container">
         <h2></h2>
 
@@ -84,5 +84,6 @@
 
         <button type="submit">Submit</button>
     </div>
-</body>
-</html>
+</div>
+@endsection
+

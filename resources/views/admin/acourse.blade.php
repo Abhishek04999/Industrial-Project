@@ -1,22 +1,25 @@
 @extends('layouts.main')
 
 @section('main-section')
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @push('title')
     <title>Courses</title>
     @endpush
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
 </head>
-<body>
+<div class="home-content">
+    <div class="searchh-bar">
+        <input class="  form-control" type="text" placeholder="Search" aria-label="Search">
+        <div class="btn-wrapperr">
+        <button class=" btn btn-primary">Search</button>
+        <button class=" btn btn-resett">Reset</button>
+        </div>
+        </div>
     <div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="margin-left: 76vw ; margin-top: 10vw;">Add Course</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="margin-left: 70vw ; ">Add Course</button>
     </div>
  <div class="card-body" >
-    <table class="table table-bordered" style="width: 75vw; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); background-color:rgb(224, 216, 224);  margin-left: 10vw; margin-top: 1vw; text-shadow: 200px;">
+    <table class="table table-bordered" style="width: 75vw; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); background-color:rgb(224, 216, 224);  margin-left: 1vw;  text-shadow: 200px;">
         <thead>
 
             <tr style="text-align: center;">
@@ -108,5 +111,5 @@
           </div>
         </div>
       </div>
-
+</div>
 @endsection

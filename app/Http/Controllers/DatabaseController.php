@@ -68,7 +68,7 @@ class DatabaseController extends Controller
 
         if($ad['email']==$request->email && $ad['password']==$request->password){
         session()->put('admin_id',$request->email);
-        return redirect('/course');
+        return redirect('/showques');
     }
     else{
         return redirect()->back();

@@ -18,7 +18,7 @@
 
 <style>
 #header{
-    background: linear-gradient(to right,rgb(66, 66, 67),rgb(101, 101, 101));
+    background: linear-gradient(to right,rgb(10, 37, 88),rgb(10, 37, 88));
 }
 #header #logo{
     width: 180px;
@@ -38,7 +38,7 @@
 
 }
 #banner{
-    background: linear-gradient(to right, rgb(48, 46, 46),rgb(86, 86, 87) ) ;
+    background: linear-gradient(to right, rgb(10, 37, 88),rgb(10, 37, 88) ) ;
 }
  #banner h4{
     font-size: 30px;
@@ -53,7 +53,7 @@
     border-radius: 50%;
  }
 #footer{
-    background: linear-gradient(to right, rgb(48, 46, 46),rgb(86, 86, 87) ) ;
+    background: linear-gradient(to right, rgb(10, 37, 88),rgb(59, 85, 133) ) ;
 }
 #footer #description{
     width: 80px;
@@ -69,6 +69,36 @@
     font-family: 'Finlandica', sans-serif;
     font-size: 14px;
     color: white;
+}
+
+
+.btn-reset{
+    border: 1px solid #c1b8b8 !important;
+}
+
+.btn-reset:hover{
+    color: white !important;
+    background-color: rgb(242, 68, 68) !important;
+}
+.btn-wrapper{
+    display: flex;
+    gap: 1em;
+    margin-left: 1em;
+}
+
+.btn{
+    width: 7em;
+}
+
+.search-bar{
+
+    width: 36em;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+    margin-top: 3em;
+    margin-bottom: 3em;
 }
 #footer .media{
     width: 60px;
@@ -100,6 +130,9 @@
 
     font-size: 60px;
 
+}
+.navbar-nav{
+    margin-left: -4em !important;
 }
  p span{
 
@@ -187,6 +220,14 @@
 
 
 }
+
+.wrapper-class{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+
 
 label {
 
@@ -281,16 +322,12 @@ button{
                     <!-- Nav bar-->
                     <nav class="navbar navbar-expand-lg">
                         <div class="container-fluid">
-                            <a class="navbar-brand" href="start.html"><img id="logo" src="{{asset('storage/media/cp logo.jpeg')}}" alt=""></a>
+                            {{-- <a class="navbar-brand" href="start.html"><img id="logo" src="{{asset('storage/media/cp logo.jpeg')}}" alt=""></a> --}}
                             <button class="navbar-toggler navbar-light bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                                    <li class="nav-item">
-                                    <a class="nav-link" href="/uhome">Welcome {{session('user_id')}}</a>
-                                    </li>
                                         <li class="nav-item">
                                         <a class="nav-link" href="/uhome">Home</a>
                                       </li>';
@@ -300,18 +337,25 @@ button{
                                     <li class="nav-item">
                                         <a class="nav-link" href="/uquizes">Quizes</a>
                                     </li>
-                                    <li class="nav-item">
 
-                                        <div class="d-grid gap-2 d-md-block ms-5 pt-2">
+                                </ul>
+                                <div class="wrapper-class">
+                                    <div class="a-link">
+                                        <a class="nav-link" style="color: white;font-size: 22px;
+                                        font-weight: bold;
+                                        padding-left: 50px;" href="/uhome">Welcome {{session('user_id')}}</a>
+                                    </div>
+                                    <div class="btn-container">
+
+                                        <div class="d-grid gap-2 d-md-block ms-0 pt-2">
                                             <a href="{{route('user.logout')}}">
                                                 <button class="btn btn-danger" type="button"> Logout<i class="bi bi-power"></i></button>
                                             </a>
 
                                         </div>
 
-                                    </li>
-                                </ul>
-
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </nav>

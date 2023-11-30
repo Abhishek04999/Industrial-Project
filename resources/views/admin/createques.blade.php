@@ -1,23 +1,13 @@
 @extends('layouts.main') {{-- Assuming you have a layout file --}}
 
 @section('main-section')
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @push('title')
     <title>create quiz</title>
     @endpush
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
-</head>
-<body>
-    <b><br /><!-- Text input-->
+    <b><br />
+        <div class="home-content">
         <div class="container">
-
-
-
             @for ($i = 1; $i <= $x; $i++)
             <form method='POST' action="{{ route('save-quiz') }}" class="form-horizontal">
                 @csrf
@@ -75,5 +65,6 @@
             </div>
         </div>
     </form>
+        </div>
       @endsection
 

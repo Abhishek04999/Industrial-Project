@@ -2,19 +2,13 @@
 
 
 @section('main-section')
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     @push('title')
     <title>Quiz</title>
     @endpush
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
 </head>
-<body>
-    <div class="card-body" style="width: 60%; height:fit-content;  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); position:static; background-color:rgb(224, 216, 224);  margin-left: 20vw; margin-top: 12vh; text-shadow: 200px;">
+<div class="home-content">
+    <div class="card-body" style="width: 60%; height:fit-content;  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); position:static; background-color:rgb(224, 216, 224);  margin-left: 6vw;  text-shadow: 200px;">
     <form method="POST"  action="{{route('createques.ques')}}">
         @csrf
         <div class="row mb-4" style="margin-left: 2vw;">
@@ -55,5 +49,5 @@
       </div>
       </form>
     </div>
-
+</div>
 @endsection

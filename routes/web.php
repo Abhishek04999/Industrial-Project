@@ -27,9 +27,9 @@ use App\Http\Controllers\DatabaseController;
 //=========================Admin Controller Route ======================================
 // Route::get('/home', [AdminController::class, 'navbar']);
 // Route::get('/course', [AdminController::class, 'course']);
-Route::get('/addquiz', [AdminController::class, 'addquiz'])->middleware('user');
-Route::get('/showques', [AdminController::class, 'showques'])->middleware('user');
-Route::get('/result', [AdminController::class, 'result'])->middleware('user');
+Route::get('/addquiz', [AdminController::class, 'addquiz'])->middleware('admin');
+Route::get('/showques', [AdminController::class, 'showques'])->middleware('admin');
+Route::get('/result', [AdminController::class, 'result'])->middleware('admin');
 Route::get('/urank', [AdminController::class, 'urank'])->middleware('user');
 
 //============================================================
