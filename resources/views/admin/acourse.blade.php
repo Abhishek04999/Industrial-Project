@@ -16,9 +16,9 @@
         </div>
         </div>
     <div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="margin-left: 70vw ; ">Add Course</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="margin-left: 69vw ; ">Add Course</button>
     </div>
- <div class="card-body" >
+ <div class="card-body" style="margin-top: 1em">
     <table class="table table-bordered" style="width: 75vw; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); background-color:rgb(224, 216, 224);  margin-left: 1vw;  text-shadow: 200px;">
         <thead>
 
@@ -54,15 +54,15 @@
                             @csrf
                             <div class="mb-3">
                               <label for="recipient-name" class="col-form-label">Course Name</label>
-                              <input type="text" name="Cname" class="form-control"  value="{{$view->Cname}}">
+                              <input type="text" style="width: 100%" name="Cname" class="form-control"  value="{{$view->Cname}}">
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Video Url</label>
-                                <input type="text" name="Curl" class="form-control"  value="https://youtu.be/{{$view->Curl}}">
+                                <input type="text" style="width: 100%" name="Curl" class="form-control"  value="https://youtu.be/{{$view->Curl}}">
                               </div>
                               <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Notes</label>
-                                <input type="file" name="Cfilename" class="form-control"  value="{{$view->Cfilename}}">
+                                <input type="file" style="width: 100%" name="Cfilename" class="form-control"  value="{{$view->Cfilename}}">
                               </div>
                         </div>
                         <div class="modal-footer">
@@ -92,15 +92,15 @@
                 @csrf
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Course Name</label>
-                  <input type="text" name="Cname" class="form-control" id="recipient-name">
+                  <input type="text" style="width: 100%" name="Cname" class="form-control" id="recipient-name">
                 </div>
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Video Url</label>
-                    <input type="text" name="Curl" class="form-control" id="recipient-name">
+                    <input type="text" style="width: 100%" name="Curl" class="form-control" id="recipient-name">
                   </div>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Notes</label>
-                    <input type="file" name="Cfilename" class="form-control" id="recipient-name">
+                    <input type="file" style="width: 100%" name="Cfilename" class="form-control" id="recipient-name">
                   </div>
             </div>
             <div class="modal-footer">

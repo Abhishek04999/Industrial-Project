@@ -313,12 +313,27 @@ private function getVideoId($url)
         return view('admin.questionview')->with($data);
     }
 
+    public function ushowquestion($id)
+    {
+        $ushowquestion = QuizQuestion::where('quizid',$id)->get();
+        $data = compact('ushowquestion');
+        return view('user.uquestionview')->with($data);
+    }
+
 
     public function showques()
     {
         $showques = Quiz::all();
         $data = compact('showques');
         return view('admin.showques')->with($data);
+
+    }
+
+    public function ushowques()
+    {
+        $ushowques = Quiz::all();
+        $data = compact('ushowques');
+        return view('user.uquizes')->with($data);
 
     }
 

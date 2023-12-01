@@ -1,11 +1,16 @@
 
-@extends('layouts.main') {{-- Assuming you have a layout file --}}
+@extends('layouts1.main')
 
-@section('main-section')
+@section('Main-section')
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @push('title')
-    <title>Simple Quiz</title>
+    <title>Quiz delete</title>
     @endpush
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,7 +21,9 @@
 
         #quiz-container {
             max-width: 600px;
-            margin-left: 2em;
+            margin-top: 3em;
+            margin-left: 33em;
+            margin-bottom: 5em;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -62,12 +69,11 @@
     </style>
 </head>
 <body>
-    <div class="home-content">
     <div id="quiz-container">
         <h2></h2>
 
         <div class="question">
-        @foreach($showquestions as $index => $questio)
+        @foreach($ushowquestion as $index => $questio)
 
         <p class="question-number">Question {{ $index + 1 }}: {{ $questio->question }}</p>
 
@@ -82,8 +88,8 @@
 
         <!-- Add more questions as needed -->
 
-        <button type="submit" class="btn btn-primary" >Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-</div>
+
 @endsection
 

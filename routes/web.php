@@ -69,7 +69,8 @@ Route::get('/userlogin',[DatabaseController::class,'userlogin']);
 Route::post('/userl',[DatabaseController::class,'userl']);
 Route::get('/userlogout',[DatabaseController::class,'userlogout'])->name('user.logout');
 Route::post('/ustore', [DatabaseController::class,'store'])->name('ustore.user');
-
+Route::get('/ushowquestion/{id}',[DatabaseController::class, 'ushowquestion'])->name('uview-question')->middleware('user');
+Route::get('/ushowques', [DatabaseController::class, 'ushowques'])->middleware('user');
 
 
 //================================Database user Controller Route ============================================

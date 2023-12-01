@@ -335,7 +335,7 @@ button{
                                         <a class="nav-link active" aria-current="page" href="/ucourse">Courses</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/uquizes">Quizes</a>
+                                        <a class="nav-link" href="/ushowques">Quizes</a>
                                     </li>
 
                                 </ul>

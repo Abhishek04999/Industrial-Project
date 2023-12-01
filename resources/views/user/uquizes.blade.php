@@ -14,8 +14,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
 </head>
 <body>
+    <div class="search-bar">
+        <input class="  form-control" type="text" placeholder="Search" aria-label="Search">
+        <div class="btn-wrapper">
+        <button class=" btn btn-primary">Search</button>
+        <button class=" btn btn-reset">Reset</button>
+        </div>
+        </div>
+
  <div class="card-body">
-    <table class="table table-bordered" style="width: 70vw; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); background-color:rgb(224, 216, 224);  margin-left: 10vw; margin-top: 8rem; text-shadow: 200px;">
+    <table class="table table-bordered" style="width: 70vw; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); background-color:rgb(224, 216, 224);  margin-left: 10vw; margin-top: 4rem; text-shadow: 200px;">
         <thead>
             <tr>
               <th scope="col">#</th>
@@ -27,7 +35,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($showques as $quiz )
+            @foreach ($ushowques as $quiz )
             <tr>
               <th scope="row">{{$quiz->quizid}}</th>
               <td>{{$quiz->qtitle}}</td>
@@ -35,7 +43,7 @@
               <td>{{$quiz->rightmarksans}}</td>
               <td>{{$quiz->timelimit}} min</td>
               <td>
-                <a href="{{env('APP_URL')}}/viewquestion/{{$quiz->quizid}}">
+                <a href="{{env('APP_URL')}}/ushowquestion/{{$quiz->quizid}}">
                     <button class="btn btn-success">Start</button></a>&nbsp;
               <button class="btn btn-danger">Restart</button></td>
             </tr>
