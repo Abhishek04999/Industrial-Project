@@ -36,14 +36,16 @@ class DatabaseController extends Controller
           return redirect()->back();
     }
 
-    public function view(){
+    public function view(Request $request){
+        $searchQuery = $request->input('search');
 
+        // Fetch all users if no search query is provided, otherwise filter users based on the search query
+        $users2 = $searchQuery ? Users::where('username', 'LIKE', "%{$searchQuery}%")->get() : Users::all();
 
-        $users2 = Users::all();
-        $data = compact('users2');
-        return view('admin.user')->with($data);
-
+        $data = ['users2' => $users2];
+        return view('admin.user', $data);
     }
+
 
     public function delete($id)
     {
@@ -162,23 +164,28 @@ private function getVideoId($url)
     }
 }
 
-    public function courseview(){
+public function courseview(Request $request){
+    $searchQuery = $request->input('search');
+
+    // Fetch all courses if no search query is provided, otherwise filter courses based on the search query
+    $courseview = $searchQuery ? Courses::where('Cname', 'LIKE', "%{$searchQuery}%")->get() : Courses::all();
+
+    $data = ['courseview' => $courseview];
+    return view('admin.acourse', $data);
+}
 
 
-        $courseview = Courses::all();
-        $data = compact('courseview');
-        return view('admin.acourse')->with($data);
+public function ucoursesview(Request $request)
+{
+    $searchQuery = $request->input('search');
 
-    }
+    // Fetch all courses if no search query is provided, otherwise filter courses based on the search query
+    $ucoursesview = $searchQuery ? Courses::where('Cname', 'LIKE', "%{$searchQuery}%")->get() : Courses::all();
 
-    public function ucoursesview(){
+    $data = ['ucoursesview' => $ucoursesview];
+    return view('user.ucourse', $data);
+}
 
-
-        $ucoursesview = Courses::all();
-        $data = compact('ucoursesview');
-        return view('user.ucourse')->with($data);
-
-    }
 
 
     public function coursedelete($id)
@@ -263,15 +270,17 @@ private function getVideoId($url)
 
      }
 
-     public function viewquiz()
-     {
-        $viewquiz = Quiz::all();
-        $data = compact('viewquiz');
-        return view('admin.removequiz')->with($data);
+     public function viewquiz(Request $request)
+{
+    $searchQuery = $request->input('search');
 
+    // Fetch all quizzes if no search query is provided, otherwise filter quizzes based on the search query
+    $viewquiz = $searchQuery ? Quiz::where('qtitle', 'LIKE', "%{$searchQuery}%")->get() : Quiz::all();
 
+    $data = ['viewquiz' => $viewquiz];
+    return view('admin.removequiz', $data);
+}
 
-     }
 
 
 
@@ -321,21 +330,29 @@ private function getVideoId($url)
     }
 
 
-    public function showques()
+    public function showques(Request $request)
     {
-        $showques = Quiz::all();
-        $data = compact('showques');
-        return view('admin.showques')->with($data);
+        $searchQuery = $request->input('search');
 
+        // Fetch all quiz questions if no search query is provided, otherwise filter quiz questions based on the search query
+        $showques = $searchQuery ? Quiz::where('qtitle', 'LIKE', "%{$searchQuery}%")->get() : Quiz::all();
+
+        $data = ['showques' => $showques];
+        return view('admin.showques', $data);
     }
 
-    public function ushowques()
-    {
-        $ushowques = Quiz::all();
-        $data = compact('ushowques');
-        return view('user.uquizes')->with($data);
 
-    }
+    public function ushowques(Request $request)
+{
+    $searchQuery = $request->input('search');
+
+    // Fetch all quiz questions if no search query is provided, otherwise filter quiz questions based on the search query
+    $ushowques = $searchQuery ? Quiz::where('qtitle', 'LIKE', "%{$searchQuery}%")->get() : Quiz::all();
+
+    $data = ['ushowques' => $ushowques];
+    return view('user.uquizes', $data);
+}
+
 
     public function quizstart()
     {
@@ -362,6 +379,56 @@ private function getVideoId($url)
     return view('user.ucours')->with($data);
 
 }
+
+//===========================================================================================
+
+public function submitQuiz(Request $request)
+    {
+        $userAnswers = $request->except('_token'); // Get all submitted answers
+
+        $ushowquestion = QuizQuestion::all(); // Fetch all quiz questions from the database
+
+        $score = 0;
+
+        foreach ($ushowquestion as $index => $question) {
+            $correctAnswer = $question->correct_answer;
+            $submittedAnswer = $userAnswers['q' . ($index + 1)];
+
+            if ($correctAnswer === $submittedAnswer) {
+                $score++;
+            }
+        }
+
+        return response()->json([
+            'score' => $score,
+            'totalQuestions' => count($ushowquestion)
+        ]);
+    }
+
+    public function submitQuiz1(Request $request)
+    {
+        $userAnswers = $request->except('_token'); // Get all submitted answers
+
+        $ushowquestion = QuizQuestion::all(); // Fetch all quiz questions from the database
+
+        $score = 0;
+
+        foreach ($ushowquestion as $index => $question) {
+            $correctAnswer = $question->correct_answer;
+            $submittedAnswer = $userAnswers['q' . ($index + 1)];
+
+            if ($correctAnswer === $submittedAnswer) {
+                $score++;
+            }
+        }
+
+        return response()->json([
+            'score' => $submittedAnswer,
+            'totalQuestions' => count($ushowquestion)
+        ]);
+    }
+
+
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - A Pen by pop</title>
+  <title>E-Learning Hub</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -610,12 +610,12 @@ nav .profile-details i {
         <span class="links_name">Remove Quiz</span>
       </a>
     </li>
-    <li>
+    {{-- <li>
       <a href="/result">
         <i class='bx bxs-star' ></i>
         <span class="links_name">Ranking</span>
       </a>
-    </li>
+    </li> --}}
     <li class="log_out">
       <a href="{{route('admin.logout')}}">
         <i class='bx bx-log-out'></i>

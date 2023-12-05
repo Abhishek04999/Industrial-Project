@@ -63,27 +63,92 @@
 </head>
 <body>
     <div class="home-content">
-    <div id="quiz-container">
-        <h2></h2>
 
-        <div class="question">
-        @foreach($showquestions as $index => $questio)
 
-        <p class="question-number">Question {{ $index + 1 }}: {{ $questio->question }}</p>
 
-            <div class="options">
-                @for($i = 1; $i <= 4; $i++)
-                <input type="radio" id="option{{ $index + 1 }}{{ $i }}" name="q{{ $index + 1 }}">
-                <label for="option{{ $index + 1 }}{{ $i }}">{{ $questio->{'option_' . chr(96 + $i)} }}</label>
-            @endfor
+
+
+{{-- ============================================== --}}
+
+
+    <div id="scoreDisplay" style="display: none;">
+        <p id="userScore" style="font-size: 135%; margin-top: 2em"></p>
+    </div>
+    <form id="quizForm" method="POST" action="{{ url('/submit-quiz1') }}">
+        @csrf
+        <div id="quiz-container">
+            <div id="timer" style="font-size: 24px; margin-top: 10px; font-weight: bold;"></div>
+
+            <div class="question">
+                @foreach($showquestions as $index => $question)
+                    <p class="question-number">Question {{ $index + 1 }}: {{ $question->question }}</p>
+                    <div class="options">
+                        @foreach(['a', 'b', 'c', 'd'] as $option)
+                            <input type="radio" id="option{{ $index + 1 }}{{ $option }}" name="q{{ $index + 1 }}" value="{{ $option }}">
+                            <label for="option{{ $index + 1 }}{{ $option }}">{{ $question->{'option_' . $option} }}</label>
+                        @endforeach
+                    </div>
+                @endforeach
             </div>
-            @endforeach
+            <button type="button" id="submitQuizBtn" class="btn btn-primary">Submit</button>
         </div>
 
-        <!-- Add more questions as needed -->
+    </form>
 
-        <button type="submit" class="btn btn-primary" >Submit</button>
-    </div>
+    <script>
+        document.getElementById('submitQuizBtn').addEventListener('click', function() {
+            var form = document.getElementById('quizForm');
+            var formData = new FormData(form);
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        document.getElementById('scoreDisplay').style.display = 'block';
+                        document.getElementById('userScore').innerText = 'Your score: ' + response.score + ' out of ' + response.totalQuestions;
+                    } else {
+                        console.error('Failed to get the score');
+                    }
+                }
+            };
+
+            xhr.open('POST', form.action);
+            xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+            xhr.send(formData);
+        });
+    </script>
+</body>
+</html>
+
+
+<!-- JavaScript for timer functionality -->
+<script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const timerValueFromURL = urlParams.get('timerValue');
+        const storedTimerValue = localStorage.getItem('timerValue');
+
+        const timerValue = timerValueFromURL || storedTimerValue;
+        const timerElement = document.getElementById('timer');
+
+        if (timerValue) {
+            let countdown = parseInt(timerValue, 10);
+            let timerInterval = setInterval(function() {
+                if (countdown <= 0) {
+                    clearInterval(timerInterval);
+                    // Redirect to the first file when the timer reaches zero
+                    window.location.href = '{{env('APP_URL')}}/showques'; // Replace 'first_file_url' with the correct URL of the first file
+                } else {
+                    timerElement.textContent = `Timer: ${countdown} seconds`;
+                    countdown--;
+                    localStorage.setItem('timerValue', countdown); // Update timer value in Local Storage
+                }
+            }, 1000);
+        } else {
+            timerElement.textContent = 'Timer: Not started';
+        }
+    };
+</script>
 </div>
 @endsection
-

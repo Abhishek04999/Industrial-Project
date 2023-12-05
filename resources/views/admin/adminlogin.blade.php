@@ -112,7 +112,7 @@ button:hover{
 <body>
      <div class="headg">
      <h1 style="font-size: 70px; font-weight: 900; color:rgb(201, 204, 192);">E-Learning</h1>
-     <h2 style="margin-top: -12%; margin-left: 0;color:rgb(225, 225, 225);"><span>“Online learning is not the next big thing,<br>&nbsp; it is the now big thing”</span></h2>
+     <h2 style="margin-top: -12%; margin-left: 0;color:rgb(225, 225, 225);"><span >Admin Login <svg xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></span></h2>
      </div>
 
 	<div class="main">

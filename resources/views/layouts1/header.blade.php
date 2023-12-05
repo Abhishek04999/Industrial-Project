@@ -20,6 +20,10 @@
 #header{
     background: linear-gradient(to right,rgb(10, 37, 88),rgb(10, 37, 88));
 }
+
+.help{
+    width: 50% !important;
+}
 #header #logo{
     width: 180px;
 
@@ -74,6 +78,9 @@
 
 .btn-reset{
     border: 1px solid #c1b8b8 !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 12px !important;
 }
 
 .btn-reset:hover{
@@ -92,7 +99,7 @@
 
 .search-bar{
 
-    width: 36em;
+    width: 25em;
     display: flex;
     justify-content: center;
     align-content: center;

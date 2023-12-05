@@ -12,18 +12,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
 </head>
 <body>
-    {{-- <div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="margin-left: 76vw ; margin-top: 10vw;">Add Course</button>
-    </div> --}}
 
-        <!-- Search form -->
-        <div class="search-bar">
-<input class="form-control" type="text" placeholder="Search" aria-label="Search">
-<div class="btn-wrapper">
-<button class=" btn btn-primary">Search</button>
-<button class=" btn btn-reset">Reset</button>
-</div>
-</div>
+        <div style="margin-left:18em;  margin-top:2em" class="help">
+            <form class="d-flex" role="search" action="{{ url('/ucourse') }}" method="GET">
+                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>&nbsp;
+                <a href="{{ url('/ucourse') }}"  class="btn btn-reset">Reset</a>
+              </form>
+
+        </div>
  <div class="card-body" >
     <table class="table table-bordered" style="width: 75vw; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); background-color:rgb(224, 216, 224);  margin-left: 10vw; margin-top: 1vw; text-shadow: 200px;">
         <thead>

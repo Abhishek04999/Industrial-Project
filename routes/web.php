@@ -80,3 +80,7 @@ Route::get('/uhome', [DatabaseController::class, 'uhome'])->middleware('user');
 Route::get('/uquizes', [DatabaseController::class, 'quizstart'])->middleware('user');
 Route::get('/ucours', [DatabaseController::class, 'ucourssview'])->middleware('user');
 
+
+Route::post('/submit-quiz', [DatabaseController::class, 'submitQuiz'])->name('submit.quiz')->middleware('user');
+
+Route::post('/submit-quiz1', [DatabaseController::class, 'submitQuiz1'])->name('submit.quiz1')->middleware('admin');

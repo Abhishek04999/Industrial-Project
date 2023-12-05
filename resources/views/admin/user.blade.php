@@ -8,13 +8,14 @@
 </head>
 <body>
     <div class="home-content">
-        <div class="searchh-bar">
-            <input class="  form-control" type="text" placeholder="Search" aria-label="Search">
-            <div class="btn-wrapperr">
-            <button class=" btn btn-primary">Search</button>
-            <button class=" btn btn-resett">Reset</button>
-            </div>
-            </div>
+    <div style="margin-left:4em; margin-bottom:2em">
+        <form class="d-flex" role="search" action="{{ url('/user') }}" method="GET">
+            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>&nbsp;
+            <a href="{{ url('/user') }}" class="btn btn-resett">Reset</a>
+          </form>
+
+    </div>
 
        <table class="table table-bordered" style="width: 70vw; box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); background-color:rgb(224, 216, 224);  margin-left: 1vw; text-shadow: 200px;">
            <thead>

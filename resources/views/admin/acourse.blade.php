@@ -8,13 +8,14 @@
     @endpush
 </head>
 <div class="home-content">
-    <div class="searchh-bar">
-        <input class="  form-control" type="text" placeholder="Search" aria-label="Search">
-        <div class="btn-wrapperr">
-        <button class=" btn btn-primary">Search</button>
-        <button class=" btn btn-resett">Reset</button>
-        </div>
-        </div>
+    <div style="margin-left:4em; margin-bottom:2em">
+        <form class="d-flex" role="search" action="{{ url('/course') }}" method="GET">
+            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>&nbsp;
+            <a href="{{ url('/course') }}" class="btn btn-resett">Reset</a>
+          </form>
+
+    </div>
     <div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" style="margin-left: 69vw ; ">Add Course</button>
     </div>
