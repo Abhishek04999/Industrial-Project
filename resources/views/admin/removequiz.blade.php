@@ -40,7 +40,7 @@
               <td>
                 <a href="{{route('removequiz.delete',['id'=>$quiz->quizid])}}">
                 <button class="btn btn-danger">Delete</button></a>&nbsp;
-                <button class="btn btn-dark">View</button>
+                {{-- <button class="btn btn-dark">View</button> --}}
             </td>
             </tr>
             @endforeach

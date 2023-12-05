@@ -3,6 +3,7 @@
 
 @section('main-section')
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @push('title')
     <title>Simple Quiz</title>
     @endpush
@@ -60,25 +61,17 @@
             margin-bottom: 10px;
         }
     </style>
+
 </head>
 <body>
     <div class="home-content">
-
-
-
-
-
-{{-- ============================================== --}}
-
-
     <div id="scoreDisplay" style="display: none;">
-        <p id="userScore" style="font-size: 135%; margin-top: 2em"></p>
+        <p id="userScore" style="font-size: 135%; margin-top: 3em"></p>
     </div>
-    <form id="quizForm" method="POST" action="{{ url('/submit-quiz1') }}">
+    <form id="quizForm" method="POST" action="{{ route('submit-quiz') }}">
         @csrf
         <div id="quiz-container">
             <div id="timer" style="font-size: 24px; margin-top: 10px; font-weight: bold;"></div>
-
             <div class="question">
                 @foreach($showquestions as $index => $question)
                     <p class="question-number">Question {{ $index + 1 }}: {{ $question->question }}</p>
@@ -96,7 +89,7 @@
     </form>
 
     <script>
-        document.getElementById('submitQuizBtn').addEventListener('click', function() {
+       document.getElementById('submitQuizBtn').addEventListener('click', function() {
             var form = document.getElementById('quizForm');
             var formData = new FormData(form);
 
@@ -118,8 +111,7 @@
             xhr.send(formData);
         });
     </script>
-</body>
-</html>
+
 
 
 <!-- JavaScript for timer functionality -->

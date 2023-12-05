@@ -84,6 +84,8 @@
             <div id="timer" style="font-size: 24px; margin-top: 10px; font-weight: bold;"></div>
 
             <div class="question">
+
+                <input type="hidden" value="{{$id}}" name="id_X">
                 @foreach($ushowquestion as $index => $question)
                     <p class="question-number">Question {{ $index + 1 }}: {{ $question->question }}</p>
                     <div class="options">
@@ -119,7 +121,7 @@
 
             xhr.open('POST', form.action);
             xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
-            xhr.send(formData);
+            xhr.send(formData,);
         });
     </script>
 </body>

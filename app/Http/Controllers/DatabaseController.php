@@ -325,7 +325,7 @@ public function ucoursesview(Request $request)
     public function ushowquestion($id)
     {
         $ushowquestion = QuizQuestion::where('quizid',$id)->get();
-        $data = compact('ushowquestion');
+        $data = compact('ushowquestion','id');
         return view('user.uquestionview')->with($data);
     }
 
@@ -386,7 +386,7 @@ public function submitQuiz(Request $request)
     {
         $userAnswers = $request->except('_token'); // Get all submitted answers
 
-        $ushowquestion = QuizQuestion::all(); // Fetch all quiz questions from the database
+        $ushowquestion = QuizQuestion::where('quizid',$userAnswers['id_X'])->get(); // Fetch all quiz questions from the database
 
         $score = 0;
 
@@ -404,6 +404,9 @@ public function submitQuiz(Request $request)
             'totalQuestions' => count($ushowquestion)
         ]);
     }
+
+
+
 
     public function submitQuiz1(Request $request)
     {
@@ -423,7 +426,7 @@ public function submitQuiz(Request $request)
         }
 
         return response()->json([
-            'score' => $submittedAnswer,
+            'score' => $score,
             'totalQuestions' => count($ushowquestion)
         ]);
     }

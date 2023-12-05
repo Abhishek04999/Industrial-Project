@@ -83,4 +83,4 @@ Route::get('/ucours', [DatabaseController::class, 'ucourssview'])->middleware('u
 
 Route::post('/submit-quiz', [DatabaseController::class, 'submitQuiz'])->name('submit.quiz')->middleware('user');
 
-Route::post('/submit-quiz1', [DatabaseController::class, 'submitQuiz1'])->name('submit.quiz1')->middleware('admin');
+Route::post('/submit-quiz1', [DatabaseController::class, 'submitQuiz1'])->name('submit-quiz')->middleware('admin');
