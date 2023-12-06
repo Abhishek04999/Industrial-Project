@@ -73,6 +73,7 @@
         <div id="quiz-container">
             <div id="timer" style="font-size: 24px; margin-top: 10px; font-weight: bold;"></div>
             <div class="question">
+                <input type="hidden" value="{{$id}}" name="id_X">
                 @foreach($showquestions as $index => $question)
                     <p class="question-number">Question {{ $index + 1 }}: {{ $question->question }}</p>
                     <div class="options">

@@ -8,6 +8,9 @@ use App\Models\Courses;
 use App\Models\Quiz;
 use App\Models\QuizQuestion;
 use App\Models\adminloginout;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\QueryMail;
+use Illuminate\Support\Facades\Log;
 
 
 function getID($length)
@@ -318,7 +321,7 @@ public function ucoursesview(Request $request)
     public function showquestion($id)
     {
         $showquestions = QuizQuestion::where('quizid',$id)->get();
-        $data = compact('showquestions');
+        $data = compact('showquestions','id');
         return view('admin.questionview')->with($data);
     }
 
@@ -412,7 +415,7 @@ public function submitQuiz(Request $request)
     {
         $userAnswers = $request->except('_token'); // Get all submitted answers
 
-        $ushowquestion = QuizQuestion::all(); // Fetch all quiz questions from the database
+        $ushowquestion = QuizQuestion::where('quizid',$userAnswers['id_X'])->get(); // Fetch all quiz questions from the database
 
         $score = 0;
 
@@ -432,6 +435,47 @@ public function submitQuiz(Request $request)
     }
 
 
+
+//======================mail=================================
+
+
+    public function submitForm(Request $request)
+    {
+        $data = [
+            'email' => $request->input('email'),
+            'name' => $request->input('name'),
+            'query' => $request->input('query'),
+        ];
+
+        Log::info('Data to be sent in email:', $data);
+        // Log the data
+
+
+        // Send email using Laravel Mail
+        Mail::to('abhisharma4033569@gmail.com')->send(new QueryMail($data));
+
+        return redirect()->back()->with('success', 'Query submitted successfully!'); // Redirect to the previous page or a specific page after submission
+    }
+
+
+//================================
+public function handleForm(Request $request)
+    {
+        // Validate form data as needed...
+
+        $phoneNumber = '918741060898'; // Replace this with your desired phone number
+
+        // Construct the message based on form input
+        $message = "New query received:\n";
+        $message .= "Name: " . $request->input('name') . "\n";
+        $message .= "Email: " . $request->input('email') . "\n";
+        $message .= "Query: " . $request->input('query');
+
+        $whatsappUrl = "https://wa.me/$phoneNumber?text=" . urlencode($message);
+
+        // Redirect the user to WhatsApp URL
+        return redirect()->to($whatsappUrl);
+    }
 
 
 

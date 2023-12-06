@@ -19,11 +19,12 @@
             <div class="col-md-4">
                 <p id="footer-query">Query Form</p>
 
-                <form action="" method="post">
-                    <input type="text" name="email" id="" class="form-control form-control-sm mb-2 " placeholder="E-mail">
-                    <input type="text" name="name" id="" class="form-control form-control-sm mb-2 " placeholder="Name">
-                    <input type="text" name="query" id="" class="form-control form-control-sm mb-2" placeholder="Query">
-                    <button type="submit" name="submit" class="btn btn-success form-control btn-sm">Submit query</button>
+                <form action="{{ route('send.whatsapp') }}" method="POST">
+                    @csrf
+                    <input type="text"  name="email" class="form-control form-control-sm mb-2 " placeholder="E-mail">
+                    <input type="text"  name="name" class="form-control form-control-sm mb-2 " placeholder="Name">
+                    <input type="text"  name="query" class="form-control form-control-sm mb-2" placeholder="Query">
+                    <button type="submit"  class="btn btn-success form-control btn-sm">Submit query</button>
                 </form>
 
             </div>
@@ -44,3 +45,4 @@
 </body>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
